@@ -1,0 +1,26 @@
+@import "./typography.scss";
+
+body {
+  font-family: $roboto;
+  font-size: 14px;
+  padding-top: 50px;
+
+  h1 {
+    font-family: $roboto-condensed;
+    font-size: 28px;
+  }
+
+  h2 {
+    font-family: $roboto;
+    font-size: 20px;
+  }
+
+  h3 {
+    font-family: $roboto;
+    font-size: 18px;
+  }
+
+  table {
+    font-family: $arial;
+  }
+}
