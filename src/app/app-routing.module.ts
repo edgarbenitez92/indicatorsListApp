@@ -6,8 +6,8 @@ import { IndicatorDetailsComponent } from './pages/indicator-details/indicator-d
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'indicator/:codigo', component: IndicatorDetailsComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'indicador/:codigo', component: IndicatorDetailsComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({

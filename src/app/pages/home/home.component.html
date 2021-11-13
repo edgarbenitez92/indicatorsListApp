@@ -30,12 +30,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="indicators-table-body" *ngFor="let indicator of indicators">
-        <td>
-          <a routerLink="/indicator/{{ indicator.codigo }}">
-            {{ indicator.codigo | uppercase }}
-          </a>
-        </td>
+      <tr
+        class="indicators-table-body"
+        (click)="goToIndicatorDetails(indicator.codigo)"
+        *ngFor="let indicator of indicators"
+      >
+        <td>{{ indicator.codigo | uppercase }}</td>
         <td>{{ indicator.nombre }}</td>
         <td>{{ indicator.unidad_medida }}</td>
         <td>{{ indicator.fecha | date: "dd-MM-yyyy" }}</td>

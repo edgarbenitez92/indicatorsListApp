@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  indicatorDetails(code: string): void {
+  goToIndicatorDetails(code: string): void {
     this.router.navigate(['indicador', code]);
   }
 
