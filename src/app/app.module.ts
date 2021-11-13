@@ -17,6 +17,8 @@ import { IndicatorValuePipe } from './pipes/indicator-value.pipe';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 
+import { ChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     NavbarComponent,
     SpinnerComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

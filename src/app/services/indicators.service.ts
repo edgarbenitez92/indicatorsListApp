@@ -14,7 +14,7 @@ export class IndicatorsService {
     return this.http.get(this.baseUrl);
   }
 
-  getIndicatorValue(code: string): Observable<any> {
+  getIndicatorValues(code: string): Observable<any> {
     return this.http.get(`https://mindicador.cl/api/${code}`);
   }
 }

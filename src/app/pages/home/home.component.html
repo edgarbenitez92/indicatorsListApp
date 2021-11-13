@@ -5,28 +5,36 @@
     </div>
   </div>
 
-  <table class="table table-striped table-hover text-center">
-    <thead class="table-ligth">
-      <tr>
-        <th>Código</th>
-        <th>Nombre</th>
-        <th>Unicidad Medida</th>
-        <th>Fecha</th>
-        <th>Valor</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let indicator of indicators">
-        <td>
-          <a routerLink="/indicator/{{ indicator.codigo }}">
-            {{ indicator.codigo | uppercase }}
-          </a>
-        </td>
-        <td>{{ indicator.nombre }}</td>
-        <td>{{ indicator.unidad_medida }}</td>
-        <td>{{ indicator.fecha | date: "dd-MM-yyyy" }}</td>
-        <td>{{ indicator.valor | indicatorValue: indicator.unidad_medida }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <ng-container *ngIf="busy; else divIndicators">
+    <app-spinner></app-spinner>
+  </ng-container>
+
+  <ng-template #divIndicators>
+    <table class="table table-striped table-hover text-center">
+      <thead class="table-ligth">
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Unicidad Medida</th>
+          <th>Fecha</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let indicator of indicators">
+          <td>
+            <a routerLink="/indicator/{{ indicator.codigo }}">
+              {{ indicator.codigo | uppercase }}
+            </a>
+          </td>
+          <td>{{ indicator.nombre }}</td>
+          <td>{{ indicator.unidad_medida }}</td>
+          <td>{{ indicator.fecha | date: "dd-MM-yyyy" }}</td>
+          <td>
+            {{ indicator.valor | indicatorValue: indicator.unidad_medida }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
 </nav>

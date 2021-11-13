@@ -9,6 +9,8 @@ import { IndicatorsService } from '../../services/indicators.service';
 export class HomeComponent implements OnInit {
   indicators: any[] = [];
 
+  busy: boolean = true;
+
   constructor(private indicatorsService: IndicatorsService) {}
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
       }
 
       this.indicators = indicators;
+      this.busy = false;
     });
   }
 }
