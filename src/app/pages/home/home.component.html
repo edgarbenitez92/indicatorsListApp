@@ -1,1 +1,28 @@
-<p>home works!</p>
+<nav class="container">
+  <div>
+    <div>
+      <h1>Indicadores económicos</h1>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Unicidad Medida</th>
+        <th>Fecha</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let indicator of indicators">
+        <td>{{ indicator.codigo | uppercase }}</td>
+        <td>{{ indicator.nombre }}</td>
+        <td>{{ indicator.unidad_medida }}</td>
+        <td>{{ indicator.fecha | date: "dd-MM-yyyy" }}</td>
+        <td>{{ indicator.valor }}</td>
+      </tr>
+    </tbody>
+  </table>
+</nav>
