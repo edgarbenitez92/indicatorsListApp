@@ -6,6 +6,27 @@
     </header>
 
     <div class="indicator-details">
+      <!-- <a class="btn btn-outline-primary btn-sm" routerLink="/home"
+        ><img src="/assets/arrow-left-short.svg" alt=""
+      /></a> -->
+
+      <div class="row indicator-details-chart">
+        <div class="col col-xs-2">
+          <div class="chart-container">
+            <canvas
+              baseChart
+              width="100"
+              height="100"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+
       <div class="indicator-details-filter">
         <div class="indicator-details-filter-byDate">
           <div class="text-date">
@@ -19,9 +40,9 @@
                 {{ date }}
               </option>
             </select>
-          </div>
-          <div *ngIf="setDateIndicator !== null">
-            <h5 class="indicator-value">Valor: ${{ setDateIndicator }}</h5>
+            <div *ngIf="setDateIndicator !== null">
+              <h5 class="indicator-value">Valor: ${{ setDateIndicator }}</h5>
+            </div>
           </div>
         </div>
         <div class="indicator-details-filter-byYear">
@@ -38,7 +59,7 @@
             *ngIf="setValueIndicator.length > 0"
             (click)="setValueIndicator.length = 0"
           >
-            Ocultar tabla
+            Ocultar
           </button>
           <div>
             <div
@@ -60,27 +81,6 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- <a class="btn btn-outline-primary btn-sm" routerLink="/home"
-        ><img src="/assets/arrow-left-short.svg" alt=""
-      /></a> -->
-
-      <div class="row indicator-details-chart">
-        <div class="col col-xs-2">
-          <div class="chart-container">
-            <canvas
-              baseChart
-              width="100"
-              height="100"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-            ></canvas>
           </div>
         </div>
       </div>

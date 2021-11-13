@@ -1,54 +1,100 @@
-.indicator-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5px;
-  margin-top: 25px;
+@media only screen and (min-width: 1000px) {
+  // Big screens
+  .indicator-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+    margin-top: 25px;
 
-  &-filter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-  &-byYear {
-  }
-
-  &-byDate {
+    &-filter {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
   }
 
-  &-chart {
-  }
-}
+  .indicator-year-table {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 6px;
+    border: 1px solid #688391;
+    &-header,
+    &-body {
+      display: flex;
+      flex-wrap: wrap;
+      height: 36px;
+      align-items: center;
+      border-bottom: 1px solid #688391;
 
-.indicator-year-table {
-  width: 100%;
-  margin-top: 15px;
-  border-radius: 6px;
-  border: 1px solid #688391;
-  &-header,
-  &-body {
-    display: flex;
-    flex-wrap: wrap;
-    height: 36px;
-    align-items: center;
-    border-bottom: 1px solid #688391;
+      & div {
+        width: 50%;
 
-    & div {
-      width: 50%;
-
-      & p {
-        margin-left: 15px;
-        margin-bottom: 0;
+        & p {
+          margin-left: 15px;
+          margin-bottom: 0;
+        }
       }
     }
   }
+
+  .indicator-value {
+    margin-top: 20px;
+  }
+
+  .chart-container {
+    position: sticky;
+    top: 50px;
+  }
 }
 
-.indicator-value {
-  margin-top: 20px;
-}
+@media only screen and (min-width: 300px) {
+  // Small screens
+  .indicator-details {
+    display: flex;
+    flex-direction: column;
+  }
 
-.chart-container {
-  position: sticky;
-  top: 70px;
+  .indicator-details-filter {
+    margin-top: 15px;
+  }
+
+  .selector-date {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  .years-options {
+    margin-bottom: 15px;
+  }
+
+  .indicator-year-table th {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 6px;
+    border: 1px solid #688391;
+    &-header,
+    &-body {
+      display: flex;
+      flex-wrap: wrap;
+      height: 36px;
+      align-items: center;
+      border-bottom: 1px solid #688391;
+
+      & div {
+        width: 50%;
+
+        & p {
+          margin-left: 15px;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .chart-container {
+    width: 70%;
+  }
 }
