@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <table class="table indicators-table">
+  <table class="table table-striped indicators-table">
     <thead class="indicators-table-header">
       <tr>
         <th>
@@ -31,11 +31,13 @@
     </thead>
     <tbody>
       <tr
-        class="indicators-table-body"
+        class="indicators-table-row"
         (click)="goToIndicatorDetails(indicator.codigo)"
         *ngFor="let indicator of indicators"
       >
-        <td>{{ indicator.codigo | uppercase }}</td>
+        <td>
+          <strong>{{ indicator.codigo | uppercase }}</strong>
+        </td>
         <td>{{ indicator.nombre }}</td>
         <td>{{ indicator.unidad_medida }}</td>
         <td>{{ indicator.fecha | date: "dd-MM-yyyy" }}</td>

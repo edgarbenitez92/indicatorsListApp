@@ -1,10 +1,13 @@
+@import "../../../assets/styles/utils/colors";
+
 .indicators-table {
   text-align: center;
   cursor: pointer;
+  white-space: nowrap;
 
-  &-body:hover {
-    background-color: #0c1861 !important;
-    color: #fff !important;
+  &-row:hover td {
+    background-color: $color-primary;
+    color: $color-white;
     transition: all 0.3s ease;
   }
 }

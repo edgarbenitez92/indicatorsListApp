@@ -5,45 +5,84 @@
       <h3>Unidad de medida: {{ indicator.unidad_medida }}</h3>
     </header>
 
-    <a class="btn btn-outline-primary btn-sm" routerLink="/home"
-      ><img src="/assets/arrow-left-short.svg" alt=""
-    /></a>
-
-    <div class="row">
-      <div class="col col-xs-2">
-        <div class="chart-container">
-          <canvas
-            baseChart
-            width="100"
-            height="100"
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [colors]="lineChartColors"
-            [legend]="lineChartLegend"
-            [chartType]="lineChartType"
-          ></canvas>
+    <div class="indicator-details">
+      <div class="indicator-details-filter">
+        <div class="indicator-details-filter-byDate">
+          <div class="text-date">
+            <p>Seleccione una fecha determinada:</p>
+            <hr />
+          </div>
+          <div class="selector-date">
+            <select class="date-options" [formControl]="selectedDate">
+              <option selected value="" disabled>Fecha</option>
+              <option [value]="date" *ngFor="let date of dateIndicator">
+                {{ date }}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="setDateIndicator !== null">
+            <h5 class="indicator-value">Valor: ${{ setDateIndicator }}</h5>
+          </div>
+        </div>
+        <div class="indicator-details-filter-byYear">
+          <p>Seleccione un año determinado:</p>
+          <hr />
+          <select class="years-options" [formControl]="selectedYear">
+            <option selected value="" disabled>Año</option>
+            <option *ngFor="let year of setYearIndicator" [value]="year">
+              {{ year }}
+            </option>
+          </select>
+          <button
+            class="btn btn-info w-20 ms-3"
+            *ngIf="setValueIndicator.length > 0"
+            (click)="setValueIndicator.length = 0"
+          >
+            Ocultar tabla
+          </button>
+          <div>
+            <div
+              class="indicator-year-table"
+              *ngIf="setValueIndicator.length > 0"
+            >
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let indicator of setValueIndicator">
+                    <td>{{ indicator.fecha | date: "dd/MM/yyyy" }}</td>
+                    <td>{{ indicator.valor }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="col col-xs-2">
-        <table class="table table-striped table-hover text-center">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let serie of indicator.serie">
-              <td>
-                {{ serie.fecha | date: "dd-MM-yyyy" }}
-              </td>
-              <td>
-                {{ serie.valor | indicatorValue: indicator.unidad_medida }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <!-- <a class="btn btn-outline-primary btn-sm" routerLink="/home"
+        ><img src="/assets/arrow-left-short.svg" alt=""
+      /></a> -->
+
+      <div class="row indicator-details-chart">
+        <div class="col col-xs-2">
+          <div class="chart-container">
+            <canvas
+              baseChart
+              width="100"
+              height="100"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+            ></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </div>

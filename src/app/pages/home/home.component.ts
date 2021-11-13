@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IndicatorsService } from '../../services/indicators.service';
+
 import { Router } from '@angular/router';
+
 import { Subscription } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 // External librarys
 import Swal from 'sweetalert2';
@@ -12,12 +14,12 @@ import Swal from 'sweetalert2';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   indicators: any[] = [];
 
   arrowUpward: boolean = true;
 
-  subIndicators!: Subscription;
+  breakIndicators!: Subscription;
 
   constructor(
     private indicatorsService: IndicatorsService,
@@ -25,11 +27,10 @@ export class HomeComponent implements OnInit {
   ) {
     this.showLoadingMsg();
 
-    this.subIndicators = this.indicatorsService
+    this.breakIndicators = this.indicatorsService
       .getIndicators()
       .pipe(
         map((indicators) => {
-          console.log(indicators, 'que soy');
           return Object.values(indicators).filter((indicators) => {
             return typeof indicators === 'object';
           });
@@ -42,20 +43,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    this.indicatorsService.getIndicators().subscribe((response) => {
-      let indicators: any[] = [];
+  ngOnInit(): void {}
 
-      for (let key in response) {
-        let value = response[key];
-
-        if (typeof value === 'object') {
-          indicators.push(value);
-        }
-      }
-
-      this.indicators = indicators;
-    });
+  ngOnDestroy(): void {
+    this.breakIndicators.unsubscribe();
   }
 
   sortByName() {
@@ -63,20 +54,20 @@ export class HomeComponent implements OnInit {
 
     if (this.arrowUpward) {
       this.indicators.sort((a, b) => {
-        if (a.codigo > b.codigo) {
+        if (a.codigo < b.codigo) {
           return 1;
         }
-        if (a.codigo < b.codigo) {
+        if (a.codigo > b.codigo) {
           return -1;
         }
         return 0;
       });
     } else {
       this.indicators.sort((a, b) => {
-        if (a.codigo < b.codigo) {
+        if (a.codigo > b.codigo) {
           return 1;
         }
-        if (a.codigo > b.codigo) {
+        if (a.codigo < b.codigo) {
           return -1;
         }
         return 0;
@@ -92,8 +83,8 @@ export class HomeComponent implements OnInit {
     Swal.fire({
       title: 'Cargando...',
       imageUrl: '/assets/b-chile.png',
-      imageWidth: 200,
-      imageHeight: 200,
+      imageWidth: 100,
+      imageHeight: 100,
       imageAlt: 'Logo Banco de Chile',
       allowEscapeKey: false,
       allowOutsideClick: false,
