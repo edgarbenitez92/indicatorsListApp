@@ -1,54 +1,50 @@
 <main>
   <div class="container">
-    <ng-container *ngIf="busy; else divIndicators">
-      <app-spinner></app-spinner>
-    </ng-container>
+    <header class="text-center mt-3">
+      <h1>Indicador Económico: {{ indicator.nombre }}</h1>
+      <h3>Unidad de medida: {{ indicator.unidad_medida }}</h3>
+    </header>
 
-    <ng-template #divIndicators>
-      <header class="text-center mt-3">
-        <h1>{{ indicator.nombre }}</h1>
-        <h3>Tipo: {{ indicator.unidad_medida }}</h3>
-      </header>
+    <a class="btn btn-outline-primary btn-sm" routerLink="/home"
+      ><img src="/assets/arrow-left-short.svg" alt=""
+    /></a>
 
-      <a class="btn btn-outline-primary btn-sm" routerLink="/home"
-        ><img src="/assets/arrow-left-short.svg" alt=""
-      /></a>
-
-      <div class="row">
-        <div class="col col-xs-2">
-          <div class="chart-container">
-            <canvas
-              baseChart
-              width="100"
-              height="100"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [chartType]="lineChartType"
-            ></canvas>
-          </div>
-        </div>
-
-        <div class="col col-xs-2">
-          <table class="table table-striped table-hover text-center">
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Valor</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let serie of indicator.serie">
-                <td>
-                  {{ serie.fecha | date: "dd-MM-yyyy" }}
-                </td>
-                <td>
-                  {{ serie.valor | indicatorValue: indicator.unidad_medida }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="row">
+      <div class="col col-xs-2">
+        <div class="chart-container">
+          <canvas
+            baseChart
+            width="100"
+            height="100"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+          ></canvas>
         </div>
       </div>
-    </ng-template>
+
+      <div class="col col-xs-2">
+        <table class="table table-striped table-hover text-center">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let serie of indicator.serie">
+              <td>
+                {{ serie.fecha | date: "dd-MM-yyyy" }}
+              </td>
+              <td>
+                {{ serie.valor | indicatorValue: indicator.unidad_medida }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </main>

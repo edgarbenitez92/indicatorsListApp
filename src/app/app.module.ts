@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
@@ -17,6 +18,7 @@ import { IndicatorValuePipe } from './pipes/indicator-value.pipe';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 
+// External librarys
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -28,7 +30,13 @@ import { ChartsModule } from 'ng2-charts';
     NavbarComponent,
     SpinnerComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ChartsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

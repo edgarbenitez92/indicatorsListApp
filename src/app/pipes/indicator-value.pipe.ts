@@ -8,7 +8,7 @@ export class IndicatorValuePipe implements PipeTransform {
     if (measurement === 'Porcentaje') {
       return value + '%';
     } else if (measurement === 'Dólar' || measurement === 'Pesos') {
-      return '$' + value;
+      return '$ ' + value;
     }
 
     return value;

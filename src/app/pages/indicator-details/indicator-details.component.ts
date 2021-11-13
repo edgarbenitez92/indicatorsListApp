@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 // Service and routing
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IndicatorsService } from '../../services/indicators.service';
 
-// Chart library
+// Externals librarys
 import { ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Color, Label } from 'ng2-charts';
 import { ChartDataSets } from 'chart.js';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-indicator-details',
@@ -15,23 +16,38 @@ import { ChartDataSets } from 'chart.js';
   styleUrls: ['./indicator-details.component.scss'],
 })
 export class IndicatorDetailsComponent implements OnInit {
-  busy: boolean = true;
   indicator: any = {};
 
+  // Config Charts
   public lineChartData: ChartDataSets[] = [{ data: [], label: '' }];
 
   public lineChartLabels: Label[] = [];
 
   public lineChartType: ChartType = 'line';
 
+  public lineChartColors: Color[] = [
+    {
+      backgroundColor: 'transparent',
+      borderColor: 'rgba(3, 3, 181, 1)',
+      pointBackgroundColor: 'rgba(3, 3, 181, 1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(3, 3, 181,0.8)',
+    },
+  ];
+
+  public lineChartLegend = true;
+
   constructor(
     private indicatorsService: IndicatorsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
+    this.showLoadingMsg();
     this.activatedRoute.params.subscribe(({ codigo }) => {
-      console.log(codigo, ' que soy?');
       this.getIndicatorValues(codigo);
     });
+    Swal.close();
   }
 
   ngOnInit(): void {}
@@ -47,8 +63,19 @@ export class IndicatorDetailsComponent implements OnInit {
       this.lineChartData[0].data = response.serie.map((serie: any) => {
         return serie.valor;
       });
-
-      this.busy = false;
     });
+  }
+
+  showLoadingMsg(): void {
+    Swal.fire({
+      title: 'Cargando...',
+      imageUrl: '/assets/b-chile.png',
+      imageWidth: 100,
+      imageHeight: 100,
+      imageAlt: 'Logo Banco de Chile',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+    });
+    Swal.showLoading();
   }
 }
