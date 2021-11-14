@@ -1,27 +1,40 @@
-# IndicatorsListApp
+# Indicadores Económicos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
+El desarrollo del proyecto muestra inicialmente un listado de indicadores económicos de uso común en Chile, en donde se aprecia su código, nombre, unidad de medida, y cual es su valor con fecha actual.
 
-## Development server
+Podrás visualizar el detalle de cualquiera de los indicadores económicos listados con solo presionarlo en cualquier sitio de la columna.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+En este último, accederás a un detalle mucho mas meticuloso sobre el comportamiento del indicador seleccionado a lo largo del tiempo con respecto a su valor (dolar, pesos ó %) para ese momento, el cual varia según su tipo.
 
-## Code scaffolding
+Adicionalmente, se desarrollaron dos (2) selectores con los cuales puedes detallar la siguiente información:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+-. Valor del indicador en los ultimos tres (3) meses, pudiendo seleccionar ciertos días en específico.
+-. Valor del indicador económico en un año en específico, pudiendo observar su comportamiento a lo largo del año seleccionado.
 
-## Build
+El proyecto fue desarrollado utilizando la librería de JavaScript [Angular](https://angular.io/) para crear la interfaz de usuario, en comunicación con la Api [mindicador.cl](https://mindicador.cl/).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Adicionalmente, se consumió la librería de [Bootstrap v5](https://getbootstrap.com/), con la que se añadieron funcionalidades y estilos a todo el proyecto. Y la librería [Angular directives for Charts.js](https://valor-software.com/ng2-charts/#/GeneralInfo) para la implementación de gráficas.
 
-## Running unit tests
+## Requisitos mínimos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Nodejs](https://nodejs.org) con soporte de largo plazo (LTS).
+- Un navegador web
 
-## Running end-to-end tests
+## Ambiente de pruebas
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Ejecutar en la raíz del proyecto:
 
-## Further help
+```
+npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+npm start
+```
+
+## Referencias
+
+- [Angular](https://angular.io/): One framework.
+- [Angular Folder Structure](https://angular-folder-structure.readthedocs.io/en/latest/): Create a skeleton structure which is flexible for projects big or small.
+- [Google Font](https://fonts.google.com/): The web's most popular icon set and toolkit.
+- [Bootstrap](https://getbootstrap.com/): Quickly design and customize responsive mobile-first sites with Bootstrap.
+- [Angular Directives for Charts.js](https://valor-software.com/ng2-charts/#/GeneralInfo): You can use one directive, for all chart types.
+- [mindicador.cl](https://mindicador.cl/): Para enterarte de las ultimas noticias sobre los indicadores económicos de todo Chile.
