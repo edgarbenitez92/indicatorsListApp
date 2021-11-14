@@ -7,7 +7,7 @@ import { IndicatorsService } from '../../services/indicators.service';
 import { Subscription } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
-// Externals librarys
+// Externals libraries
 import { ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { ChartDataSets } from 'chart.js';
@@ -21,8 +21,8 @@ import Swal from 'sweetalert2';
 export class IndicatorDetailsComponent implements OnInit, OnDestroy {
   // Data indicator
   indicator: any = {};
-  setValueIndicator: any[] = [];
-  indicadorValor: number[] = [];
+  filteredValueIndicator: any[] = [];
+  indicatorValue: number[] = [];
   indicatorCode!: string;
   breakIndicator!: Subscription;
 
@@ -30,10 +30,10 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
   dateIndicator: string[] = [];
   selectedDate!: FormControl;
   breakDate!: Subscription;
-  setDateIndicator = null;
+  filteredDateIndicator = null;
 
   // Data years
-  setYearIndicator: string[] = [];
+  filteredYearIndicator: string[] = [];
   selectedYear!: FormControl;
   breakYear!: Subscription;
 
@@ -42,7 +42,6 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
 
   public lineChartColors: Color[] = [
     {
-      // grey
       backgroundColor: 'transparent',
       borderColor: 'rgba(3, 3, 181, 1)',
       pointBackgroundColor: 'rgba(3, 3, 181, 1)',
@@ -76,13 +75,13 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
 
         this.indicator.serie.forEach((indicator: any) => {
           const fecha = this.formatDate(indicator.fecha);
-          this.indicadorValor.push(indicator.valor);
+          this.indicatorValue.push(indicator.valor);
           this.dateIndicator.push(fecha);
         });
 
         this.lineChartData = [
           {
-            data: this.indicadorValor,
+            data: this.indicatorValue,
             label: `Nombre: ${this.indicator.nombre}`,
           },
         ];
@@ -94,7 +93,7 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.setYearIndicator = this.arrayYears();
+    this.filteredYearIndicator = this.getYears();
     this.getDateIndicator();
     this.getYearIndicator();
   }
@@ -117,7 +116,7 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
         map((indicator) => indicator.serie[0].valor)
       )
       .subscribe((indicator) => {
-        this.setDateIndicator = indicator;
+        this.filteredDateIndicator = indicator;
         Swal.close();
       });
   }
@@ -135,8 +134,8 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
         map((indicator) => indicator.serie)
       )
       .subscribe((indicator) => {
-        this.setValueIndicator = indicator;
-        console.log(this.setValueIndicator.length);
+        this.filteredValueIndicator = indicator;
+        console.log(this.filteredValueIndicator.length);
         Swal.close();
       });
   }
@@ -146,16 +145,11 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
-    if (month < 10) {
-      return `${day}-0${month}-${year}`;
-    } else {
-      return `${day}-${month}-${year}`;
-    }
-  }
 
-  // backToHome(path: string): void {
-  //   this.router.navigate([path]);
-  // }
+    let formattedMonth = month < 10 ? `0${month}` : month;
+
+    return `${day}-${formattedMonth}-${year}`;
+  }
 
   showLoadingMsg(): void {
     Swal.fire({
@@ -170,13 +164,13 @@ export class IndicatorDetailsComponent implements OnInit, OnDestroy {
     Swal.showLoading();
   }
 
-  arrayYears(): string[] {
+  getYears(): string[] {
     let firstYear = 2000;
     const currentYear = new Date().getFullYear();
-    let arrayYears = [];
+    let Years = [];
     for (firstYear; firstYear <= currentYear; firstYear++) {
-      arrayYears.push(String(firstYear));
+      Years.push(String(firstYear));
     }
-    return arrayYears;
+    return Years;
   }
 }

@@ -6,10 +6,6 @@
     </header>
 
     <div class="indicator-details">
-      <!-- <a class="btn btn-outline-primary btn-sm" routerLink="/home"
-        ><img src="/assets/arrow-left-short.svg" alt=""
-      /></a> -->
-
       <div class="row indicator-details-chart">
         <div class="col col-xs-2">
           <div class="chart-container">
@@ -40,8 +36,10 @@
                 {{ date }}
               </option>
             </select>
-            <div *ngIf="setDateIndicator !== null">
-              <h5 class="indicator-value">Valor: ${{ setDateIndicator }}</h5>
+            <div *ngIf="filteredDateIndicator !== null">
+              <h5 class="indicator-value">
+                Valor: ${{ filteredDateIndicator }}
+              </h5>
             </div>
           </div>
         </div>
@@ -50,21 +48,21 @@
           <hr />
           <select class="years-options" [formControl]="selectedYear">
             <option selected value="" disabled>Año</option>
-            <option *ngFor="let year of setYearIndicator" [value]="year">
+            <option *ngFor="let year of filteredYearIndicator" [value]="year">
               {{ year }}
             </option>
           </select>
           <button
             class="btn btn-info w-20 ms-3"
-            *ngIf="setValueIndicator.length > 0"
-            (click)="setValueIndicator.length = 0"
+            *ngIf="filteredValueIndicator.length > 0"
+            (click)="filteredValueIndicator.length = 0"
           >
             Ocultar
           </button>
           <div>
             <div
               class="indicator-year-table"
-              *ngIf="setValueIndicator.length > 0"
+              *ngIf="filteredValueIndicator.length > 0"
             >
               <table class="table table-striped">
                 <thead>
@@ -74,9 +72,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let indicator of setValueIndicator">
+                  <tr *ngFor="let indicator of filteredValueIndicator">
                     <td>{{ indicator.fecha | date: "dd/MM/yyyy" }}</td>
-                    <td>{{ indicator.valor }}</td>
+                    <td>${{ indicator.valor }}</td>
                   </tr>
                 </tbody>
               </table>

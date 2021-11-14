@@ -39,7 +39,7 @@
 
 .chart-container {
   position: sticky;
-  top: 50px;
+  top: 70px;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -98,18 +98,21 @@
     margin-top: 15px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-  }
+    align-items: stretch;
 
-  // .selector-date {
-  //   margin-bottom: 15px;
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: stretch;
-  // }
+    &-byDate {
+      margin-bottom: 15px;
 
-  .years-options {
-    margin-bottom: 15px;
+      .selector-date {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    &-byYear {
+      margin-bottom: 15px;
+    }
   }
 
   .indicator-year-table th {

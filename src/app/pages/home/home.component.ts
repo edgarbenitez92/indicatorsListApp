@@ -6,8 +6,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-// External librarys
+// External libraries
 import Swal from 'sweetalert2';
+
+import { Indicator } from 'src/app/interfaces/indicator.interface';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +17,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  indicators: any[] = [];
+  indicators: Indicator[] = [];
 
   arrowUpward: boolean = true;
 

@@ -16,9 +16,8 @@ import { IndicatorValuePipe } from './pipes/indicator-value.pipe';
 
 // Shared
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SpinnerComponent } from './shared/spinner/spinner.component';
 
-// External librarys
+// External libraries
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { ChartsModule } from 'ng2-charts';
     IndicatorDetailsComponent,
     IndicatorValuePipe,
     NavbarComponent,
-    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
